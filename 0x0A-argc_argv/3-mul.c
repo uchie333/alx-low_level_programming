@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "main.h"
-
 /**
  * _atoi - converts a string to an integer
  * @s: string to be converted
@@ -9,66 +8,67 @@
  */
 int _atoi(char *s)
 {
-int a, d, n, length, f, i;
+	int i, d, n, len, f, digit;
 
-a = 0;
-d = 0;
-n = 0;
-length = 0;
-f = 0;
-i = 0;
+	i = 0;
+	d = 0;
+	n = 0;
+	len = 0;
+	f = 0;
+	digit = 0;
 
-while (s[length] != '\0')
-length++;
+	while (s[len] != '\0')
+		len++;
 
-while (a < length && f == 0)
-{
-if (s[a] == '-')
-++d;
+	while (i < len && f == 0)
+	{
+		if (s[i] == '-')
+			++d;
 
-if (s[a] >= '0' && s[a] <= '9')
-{
-i = s[a] - '0';
-if (d % 2)
-i = -i;
-n = n * 10 + i;
-f = 1;
-if (s[a + 1] < '0' || s[a + 1] > '9')
-break;
-f = 0;
+		if (s[i] >= '0' && s[i] <= '9')
+		{
+			digit = s[i] - '0';
+			if (d % 2)
+				digit = -digit;
+			n = n * 10 + digit;
+			f = 1;
+			if (s[i + 1] < '0' || s[i + 1] > '9')
+				break;
+			f = 0;
+		}
+		i++;
+	}
+
+	if (f == 0)
+		return (0);
+
+	return (n);
 }
-a++;
-}
-
-if (f == 0)
-{
-return (0);
-}
-
-return (n);
-}
-
 /**
- * main - multiplies 2 numbers
+ * main - Program that takes first two integer arguments and prints the product
  * @argc: arguement count
  * @argv: arguement vector
- *
- * Return: 0 (Success), 1 (Error)
+ * Return: 1 if not enough arguments passed in, 0 otherwise
  */
+
 int main(int argc, char *argv[])
 {
-int value, num1, num2;
+	int a, b;
 
-if (argc < 3 || argc > 3)
-{
-printf("Error\n");
-return (1);
-}
+	if (argc == 1 || argc == 2)
+	{
+		printf("Error\n");
+		return (1);
+	}
+	else
+	{
+		b = 1;
 
-num1 = _atoi(argv[1]);
-num2 = _atoi(argv[2]);
-value = num1 * num2;
+		for (a = 1; a < 3; a++)
+			b *= _atoi(argv[a]);
 
-printf("%d\n", value);
-return (0);
+		printf("%d\n", b);
+	}
+
+	return (0);
 }
