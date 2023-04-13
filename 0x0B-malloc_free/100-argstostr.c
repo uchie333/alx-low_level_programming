@@ -15,7 +15,7 @@ char *argstostr(int ac, char **av)
 		return (NULL);
 	for (m = 0; m < ac; m++)
 	{
-		for (n = 0; av[i][n]; n++)
+		for (n = 0; av[m][n]; n++)
 			l++;
 	}
 	l += ac;
